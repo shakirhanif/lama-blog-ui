@@ -5,6 +5,7 @@ import Header from "./components/header/Header";
 import Settings from "./components/Settings";
 import Topbar from "./components/topbar/Topbar";
 import Home from "./pages/home/Home";
+import Login from "./pages/login/Login";
 import Single from "./pages/single/Single";
 import Write from "./pages/Write";
 
@@ -15,7 +16,8 @@ function App() {
       {/* <Home /> */}
       {/* <Single /> */}
       {/* <Write /> */}
-      <Settings />
+      {/* <Settings /> */}
+      <Login />
     </>
   );
 }
