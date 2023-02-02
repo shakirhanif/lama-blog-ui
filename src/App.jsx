@@ -6,6 +6,7 @@ import Settings from "./components/Settings";
 import Topbar from "./components/topbar/Topbar";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
 import Single from "./pages/single/Single";
 import Write from "./pages/Write";
 
@@ -17,7 +18,8 @@ function App() {
       {/* <Single /> */}
       {/* <Write /> */}
       {/* <Settings /> */}
-      <Login />
+      {/* <Login /> */}
+      <Register />
     </>
   );
 }

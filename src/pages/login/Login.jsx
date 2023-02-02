@@ -2,10 +2,10 @@ import "./login.css";
 const Login = () => {
   return (
     <div
-      className="h-[calc(100vh-50px)] flex flex-col justify-center items-center bg-auto"
+      className="h-[calc(100vh-50px)] flex flex-col justify-center items-center bg-cover "
       style={{
         backgroundImage:
-          "url('https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80')",
+          "url('https://images.unsplash.com/photo-1595126731003-755959b6baf8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&q=80')",
       }}
     >
       <span className=" text-[50px]">Login</span>
@@ -16,12 +16,14 @@ const Login = () => {
           className="p-[10px] bg-white"
           style={{ border: "none" }}
           id="email"
+          placeholder="Type your email"
         />
         <label htmlFor="password">Password</label>
         <input
           type="password"
           className="p-[10px] bg-white"
           style={{ border: "none" }}
+          placeholder="Type your password"
         />
         <button
           className=" mt-[20px] cursor-pointer bg-red-300 text-white rounded-lg p-[10px]"
