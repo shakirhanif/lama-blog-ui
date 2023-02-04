@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
+import { Link } from "react-router-dom";
 import { getSinglePost } from "../service/api";
 
 const SinglePost = () => {
@@ -38,9 +39,11 @@ const SinglePost = () => {
           </div>
         </h1>
         <div className=" flex justify-between mb-[20px] text-[16px] text-[#b39656] font-['Varela Round',sans-serif]">
-          <div>
-            Author: <b>{post.username}</b>
-          </div>
+          <Link to={`/?username=${post.username}`} className="link">
+            <div>
+              Author: <b>{post.username}</b>
+            </div>
+          </Link>
           <div>{new Date(post.createdAt).toDateString()}</div>
         </div>
         <p className=" font-['Josefin Sans',sans-serif] text-[#666] font-[18px] leading-[25px] first-letter:ml-[20px] first-letter:text-[30px]">

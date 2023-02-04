@@ -4,16 +4,18 @@ import Header from "../../components/header/Header";
 import Posts from "../../components/posts/Posts";
 import SideBar from "../../components/sidebar/SideBar";
 import "./home.css";
+import { useLocation } from "react-router";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
+  const { search } = useLocation();
   useEffect(() => {
-    const fetchPosts = async () => {
-      const newPosts = await getPosts();
+    const fetchPosts = async (srch) => {
+      const newPosts = await getPosts(srch);
       setPosts(newPosts);
     };
-    fetchPosts();
-  }, []);
+    fetchPosts(search);
+  }, [search]);
 
   return (
     <>

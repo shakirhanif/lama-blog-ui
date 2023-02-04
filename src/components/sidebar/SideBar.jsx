@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { getCategory } from "../../service/api";
 import "./sidebar.css";
 const SideBar = () => {
@@ -30,7 +31,9 @@ const SideBar = () => {
           {cat.map((x, i) => {
             return (
               <li className="sideBarListItem" key={i}>
-                {x.name}
+                <Link to={`/?cat=${x.name}`} className="link">
+                  {x.name}
+                </Link>
               </li>
             );
           })}
