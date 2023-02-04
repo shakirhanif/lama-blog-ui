@@ -1,6 +1,29 @@
+import axios from "axios";
+import { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { actions } from "../../redux/store";
+import { url } from "../../service/api.js";
 import "./login.css";
 const Login = () => {
+  const dispatch = useDispatch();
+  const { user, isFetching, error } = useSelector((state) => state);
+  const userRef = useRef();
+  const passwordRef = useRef();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    dispatch(actions.loginStart());
+    try {
+      const res = await axios.post(`${url}/user/login`, {
+        username: userRef.current.value,
+        password: passwordRef.current.value,
+      });
+      dispatch(actions.loginSuccess(res.data));
+    } catch (err) {
+      dispatch(actions.loginFailure());
+    }
+  };
+  console.log(user);
   return (
     <div
       className="h-[calc(100vh-50px)] flex flex-col justify-center items-center bg-cover "
@@ -10,14 +33,18 @@ const Login = () => {
       }}
     >
       <span className=" text-[50px]">Login</span>
-      <form className=" mt-[20px] flex flex-col [&>label]:my-[10px]">
-        <label htmlFor="email">Email</label>
+      <form
+        className=" mt-[20px] flex flex-col [&>label]:my-[10px]"
+        onSubmit={handleSubmit}
+      >
+        <label htmlFor="username">Username</label>
         <input
-          type="email"
+          type="text"
           className="p-[10px] bg-white"
           style={{ border: "none" }}
-          id="email"
-          placeholder="Type your email"
+          id="username"
+          placeholder="Type your username"
+          ref={userRef}
         />
         <label htmlFor="password">Password</label>
         <input
@@ -25,10 +52,13 @@ const Login = () => {
           className="p-[10px] bg-white"
           style={{ border: "none" }}
           placeholder="Type your password"
+          ref={passwordRef}
         />
         <button
-          className=" mt-[20px] cursor-pointer bg-red-300 text-white rounded-lg p-[10px]"
+          className=" mt-[20px] cursor-pointer bg-red-300 text-white rounded-lg p-[10px] hover:bg-red-400 disabled:cursor-not-allowed disabled:bg-orange-500"
           style={{ border: "none" }}
+          type="submit"
+          disabled={isFetching}
         >
           Login
         </button>

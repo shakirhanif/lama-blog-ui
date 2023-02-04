@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://localhost:3000";
+export const url = "http://localhost:3000";
 //POST-API
 export const getPosts = async (search) => {
   const res = await axios.get(`${url}/post/${search}`);

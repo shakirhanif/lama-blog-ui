@@ -1,8 +1,16 @@
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./topbar.css";
 
 const Topbar = ({ children }) => {
   const user = false;
+
+  const state = useSelector((state) => state);
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(state.user));
+    document.cookie = `user:${state.user},max-age:604800`;
+  }, [state.user]);
   return (
     <>
       <div className="top">
