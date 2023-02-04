@@ -23,7 +23,6 @@ const Login = () => {
       dispatch(actions.loginFailure());
     }
   };
-  console.log(user);
   return (
     <div
       className="h-[calc(100vh-50px)] flex flex-col justify-center items-center bg-cover "

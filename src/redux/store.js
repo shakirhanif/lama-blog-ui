@@ -23,6 +23,11 @@ const accountSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
+    logout(state, action) {
+      state.user = null;
+      state.isFetching = false;
+      state.error = null;
+    },
   },
 });
 export const actions = accountSlice.actions;

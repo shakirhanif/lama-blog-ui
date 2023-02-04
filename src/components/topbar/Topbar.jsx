@@ -1,16 +1,19 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { actions } from "../../redux/store";
 import "./topbar.css";
 
 const Topbar = ({ children }) => {
-  const user = false;
-
+  const dispatch = useDispatch();
   const state = useSelector((state) => state);
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(state.user));
-    document.cookie = `user:${state.user},max-age:604800`;
   }, [state.user]);
+  const user = state.user;
+  const logoutHandler = () => {
+    dispatch(actions.logout());
+  };
   return (
     <>
       <div className="top">
@@ -40,16 +43,26 @@ const Topbar = ({ children }) => {
                 WRITE
               </Link>
             </li>
-            <li className="topListItem">{user ? "LOGOUT" : null}</li>
+            <li className="topListItem" onClick={logoutHandler}>
+              {user ? "LOGOUT" : null}
+            </li>
           </ul>
         </div>
         <div className="topRight">
           {user ? (
-            <img
-              src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1031&q=80"
-              alt="profilePic"
-              className="topImage"
-            />
+            user.profilePic ? (
+              <img
+                src={user.profilePic}
+                alt="profilePic"
+                className="topImage"
+              />
+            ) : (
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/3/34/PICA.jpg"
+                alt="profilePic"
+                className="topImage"
+              />
+            )
           ) : (
             <ul className="topList">
               <li className="topListItem">

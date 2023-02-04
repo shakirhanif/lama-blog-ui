@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import Settings from "./components/Settings";
 import Home from "./pages/home/Home";
@@ -8,7 +9,7 @@ import Single from "./pages/single/Single";
 import Write from "./pages/Write";
 
 function App() {
-  const user = false;
+  const user = useSelector((state) => state.user);
   return (
     <Routes>
       <Route path="/" element={<Home />} />
