@@ -1,5 +1,15 @@
+import { useEffect, useState } from "react";
+import { getCategory } from "../../service/api";
 import "./sidebar.css";
 const SideBar = () => {
+  const [cat, setCat] = useState([]);
+  useEffect(() => {
+    const fetchCats = async () => {
+      const newCat = await getCategory();
+      setCat(newCat);
+    };
+    fetchCats();
+  }, []);
   return (
     <div className="sidebar">
       <div className="sideBarItem">
@@ -17,11 +27,13 @@ const SideBar = () => {
       <div className="sideBarItem">
         <div className="sideBarTitle">CATEGORIES</div>
         <ul className="sideBarList">
-          <li className="sideBarListItem">Life</li>
-          <li className="sideBarListItem">Music</li>
-          <li className="sideBarListItem">Style</li>
-          <li className="sideBarListItem">Tech</li>
-          <li className="sideBarListItem">Sports</li>
+          {cat.map((x, i) => {
+            return (
+              <li className="sideBarListItem" key={i}>
+                {x.name}
+              </li>
+            );
+          })}
         </ul>
       </div>
       <div className="sideBarItem">

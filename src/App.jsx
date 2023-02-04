@@ -8,7 +8,7 @@ import Single from "./pages/single/Single";
 import Write from "./pages/Write";
 
 function App() {
-  const user = false;
+  const user = true;
   return (
     <Routes>
       <Route path="/" element={<Home />} />
