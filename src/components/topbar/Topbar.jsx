@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "./topbar.css";
 
 const Topbar = ({ children }) => {
-  const user = true;
+  const user = false;
   return (
     <>
       <div className="top">
