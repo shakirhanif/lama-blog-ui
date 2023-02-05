@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { actions } from "../../redux/store";
+import { url } from "../../service/api";
 import "./topbar.css";
 
 const Topbar = ({ children }) => {
@@ -51,17 +52,21 @@ const Topbar = ({ children }) => {
         <div className="topRight">
           {user ? (
             user.profilePic ? (
-              <img
-                src={user.profilePic}
-                alt="profilePic"
-                className="topImage"
-              />
+              <Link to={"/settings"}>
+                <img
+                  src={`${url}/files/${user.profilePic}`}
+                  alt="profilePic"
+                  className="topImage"
+                />
+              </Link>
             ) : (
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/3/34/PICA.jpg"
-                alt="profilePic"
-                className="topImage"
-              />
+              <Link to={"/settings"}>
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/3/34/PICA.jpg"
+                  alt="profilePic"
+                  className="topImage"
+                />
+              </Link>
             )
           ) : (
             <ul className="topList">
