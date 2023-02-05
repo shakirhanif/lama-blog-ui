@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
-import { getSinglePost } from "../service/api";
+import { getSinglePost, url } from "../service/api";
 
 const SinglePost = () => {
   const location = useLocation();
@@ -19,7 +19,7 @@ const SinglePost = () => {
       <div className=" p-[20px] pr-0">
         {post.photo ? (
           <img
-            src={post.photo}
+            src={`${url}/files/${post.photo}`}
             alt="post-image"
             className="w-[100%] h-[300px] rounded-[5px] object-cover"
           />
