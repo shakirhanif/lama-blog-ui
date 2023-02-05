@@ -23,14 +23,13 @@ const Write = () => {
       try {
         const fileRes = await axios.post(`${url}/upload/image`, data);
         newPost.photo = fileRes.data;
-        console.log("file response", fileRes.data);
       } catch (err) {
         console.log(err.message);
       }
     }
     try {
       const res = await axios.post(`${url}/post/create`, newPost);
-      console.log(res.data);
+      window.location.replace(`/post/${res.data._id}`);
     } catch (err) {
       console.log(err.message);
     }

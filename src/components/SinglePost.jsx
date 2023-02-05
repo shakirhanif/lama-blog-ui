@@ -1,9 +1,12 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { getSinglePost, url } from "../service/api";
 
 const SinglePost = () => {
+  const user = useSelector((state) => state.user);
   const location = useLocation();
   const postId = location.pathname.split("/")[2];
   const [post, setPost] = useState({});
@@ -14,6 +17,18 @@ const SinglePost = () => {
     };
     fetchPost(postId);
   }, [postId]);
+  const deleteHandler = async () => {
+    try {
+      await axios.delete(`${url}/post/delete/${postId}`, {
+        data: {
+          username: user.username,
+        },
+      });
+      window.location.replace("/");
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
   return (
     <div>
       <div className=" p-[20px] pr-0">
@@ -33,10 +48,15 @@ const SinglePost = () => {
 
         <h1 className=" text-center font-['Lora',serif] text-[28px]">
           {post?.title}
-          <div className=" float-right text-[16px]">
-            <i className=" ml-[20px] cursor-pointer text-teal-600 fa-solid fa-pen-to-square" />
-            <i className="ml-[20px] cursor-pointer text-red-400 fa-solid fa-trash" />
-          </div>
+          {post?.username === user?.username ? (
+            <div className=" float-right text-[16px]">
+              <i className=" ml-[20px] cursor-pointer text-teal-600 fa-solid fa-pen-to-square" />
+              <i
+                className="ml-[20px] cursor-pointer text-red-400 fa-solid fa-trash"
+                onClick={deleteHandler}
+              />
+            </div>
+          ) : null}
         </h1>
         <div className=" flex justify-between mb-[20px] text-[16px] text-[#b39656] font-['Varela Round',sans-serif]">
           <Link to={`/?username=${post.username}`} className="link">
