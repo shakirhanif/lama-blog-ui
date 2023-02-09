@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// export const url = "https://dark-gold-basket-clam-suit.cyclic.app";
 export const url = "http://localhost:3000";
 //POST-API
 export const getPosts = async (search) => {

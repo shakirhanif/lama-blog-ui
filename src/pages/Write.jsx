@@ -17,8 +17,8 @@ const Write = () => {
     };
     if (file) {
       const data = new FormData();
-      // const filename = Date.now() + file.name;
-      // data.append("name", filename);
+      const filename = Date.now() + file.name;
+      data.append("name", filename);
       data.append("file", file);
       try {
         const fileRes = await axios.post(`${url}/upload/image`, data);
